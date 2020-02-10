@@ -15,7 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique = True, index=True)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    role_id = db.relationship('Review',backref='user', lazy='dynamic')
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     pass_secure = db.Column(db.String())
 
     @property
@@ -23,7 +23,7 @@ class User(db.Model):
         '''
         Define property object to make limit access to pass_secure
         '''
-        raise AttrbuteError('You cannot read the password attribute')
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self,password):

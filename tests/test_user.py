@@ -1,7 +1,7 @@
 import unittest
 from app.models import User
 
-class TestUser(unittest.TestCase):
+class TestUserModel(unittest.TestCase):
     '''
     Test class for the User Model
     '''
@@ -16,7 +16,7 @@ class TestUser(unittest.TestCase):
         '''
         Test that the password setter works
         '''
-        self.assertTrue(self.new_user.pass_secure is Not None)
+        self.assertTrue(self.new_user.pass_secure is not None)
 
     def test_no_access_password(self):
         '''
