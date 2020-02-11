@@ -1,0 +1,25 @@
+{% block content %}
+<div class="container-fluid">
+    <h4>Profile</h4>
+    <div class="row">
+        <div class="col-md-4">
+            {% if user.profile_pic_path %}
+            <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="rounded-circle z-depth-2"
+                data-holder-rendered="true">
+            {% else %}
+            <img src="https://previews.123rf.com/images/panyamail/panyamail1809/panyamail180900343/109879063-user-avatar-icon-sign-profile-symbol.jpg"
+                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            {{user.username}}
+            <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+            {% if user.bio %}
+            {{user.bio}}
+            {% else %}
+            {{user.username}} has no bio
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

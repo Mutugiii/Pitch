@@ -1,31 +1,34 @@
 <nav class="navbar navbar-dark navbar-light" style="background-color: #b0c0bc;">
-    <a class="navbar-brand" href="/" style="font-size: 1.4rem; color: #797270;">Pitch</a>
-    {% if current_user.is_authenticated %}
-    <span>{{current_user.username}}</span>
-    <span><a href="{{url_for('auth.logout')}}" style="font-size: 1.4rem; color: #797270;">Sign Out</a></span>
-    {% else %}
-    <span><a href="{{url_for('auth.login')}}" style="font-size: 1.4rem; color: #797270;">Sign In</a></span>
-    {% endif %}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="/" style="font-size: 1.4rem; color: #797270;">Pitch</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
+    aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="navbar-collapse collapse" id="navbarsExample01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="navbar-collapse collapse" id="navbarsExample01">
+    <ul class="navbar-nav mr-auto">
+      {% if current_user.is_authenticated %}
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}" style="font-size: 1.4rem; color: #797270;">User Profile</a></li>
+      {% endif %}
+
+      {% if current_user.is_authenticated %}
+      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.logout')}}" style="font-size: 1.4rem; color: #797270;">Sign Out</a></li>
+      {% else %}
+      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.login')}}" style="font-size: 1.4rem; color: #797270;">Sign In</a class="nav-link"></li>
+      {% endif %}
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Categories</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
