@@ -17,8 +17,7 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or Password')
 
-    title = 'Pitch login'
-    return render_template('auth/login.html', title = title, form = login_form)
+    return render_template('auth/login.html', form = login_form)
 
 @auth.route('/register', methods=['GET','POST'])
 def register():
@@ -32,7 +31,6 @@ def register():
         db.session.commit()
         return redirect(url_for('auth.login'))
 
-    title = 'Pitch Register'
     return render_template('auth/register.html', form = form)
 
 
