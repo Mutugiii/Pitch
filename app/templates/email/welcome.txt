@@ -1,0 +1,8 @@
+Hello {{user.username}},
+
+Welcome to Pitch!!
+Thank you for signing up for pitch. Welcome to the family and now is the time to pitch in! 
+
+
+
+Please do not reply to this email as it is automated.
