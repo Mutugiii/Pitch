@@ -4,7 +4,7 @@ class Config:
     '''
     General configurations that are inherited by the other classes
     '''
-    pass
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     '''
@@ -27,7 +27,7 @@ class TestConfig(Config):
     pass
 
 config_options = {
-        'development': DevConfig,
-        'production': ProdConfig,
-        'test': TestConfig
+    'development': DevConfig,
+    'production': ProdConfig,
+    'test': TestConfig
 }
