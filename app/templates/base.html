@@ -14,10 +14,13 @@
 
 <body>
     {% block navbar %}
-    {%include 'navbar.html' %}
+    {% include 'navbar.html' %}
     {% endblock %}
     {% block content %}
 
+    {% endblock %}
+    {% block footer %}
+    {% include 'footer.html' %}
     {% endblock %}
 
     <!-- Script tags -->
