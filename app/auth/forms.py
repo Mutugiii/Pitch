@@ -40,3 +40,10 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in')
 
+class UpdateProfileForm(FlaskForm):
+    '''
+    Class to implement update profile form
+    '''
+    bio = TextAreaField('Tell us about yourself!', validators=[Required()])
+    submit =SubmitField('Update Profile')
+
