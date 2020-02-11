@@ -8,15 +8,18 @@
   <div class="navbar-collapse collapse" id="navbarsExample01">
     <ul class="navbar-nav mr-auto">
       {% if current_user.is_authenticated %}
-      <li class="nav-item"><a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}" style="font-size: 1.4rem; color: #797270;">User Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}"
+          style="color: #797270;">User Profile</a></li>
       {% endif %}
 
       {% if current_user.is_authenticated %}
-      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.logout')}}" style="font-size: 1.4rem; color: #797270;">Sign Out</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.logout')}}" style="color: #797270;">Sign Out</a>
+      </li>
       {% else %}
-      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.login')}}" style="font-size: 1.4rem; color: #797270;">Sign In</a class="nav-link"></li>
+      <li class="nav-item"><a class="nav-link" href="{{url_for('auth.login')}}" style="color: #797270;">Sign In</a
+          class="nav-link"></li>
       {% endif %}
-      
+
       <li class="nav-item">
         <a class="nav-link" href="/profile">Link</a>
       </li>
