@@ -1,8 +1,8 @@
 {% extends 'base.html'%}
 
-{% block title %}
+<!-- {% block title %}
 <title>Register</title>
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
 <div class="container">
@@ -10,29 +10,28 @@
         <div class="col-md-3"> </div>
         <div class="col-md-6">
             <br>
-            <div class="container-fluid">
-                <form method="POST" action="/" class="container form-group">
-                    {{ form.csrf_token }}
-                    <div class="form-group">
-                        {{ form.email.label }} : 
-                        {{form.email(size=60)}}
-                    </div>
-                    <div class="form-group">
-                        {{ form.username.label }} : 
-                        {{form.username(size=60)}}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label }} : 
-                        {{form.password(size=60)}}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password_confirmation.label }} : 
-                        {{form.password_confirmation(size=60)}}
-                    </div>
-                    {{form.submit(size=20)}}
-                </form>
-                <p> Already have an account? <a href="{{url_for('auth.login')}}">Log in here</a></p>
-            </div>
+            <form method="POST" action="{{url_for('auth.login')}}">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ form.email.label }} :
+                    {{ form.email(size=60)}}
+                </div>
+                <div class="form-group">
+                    {{ form.username.label }} :
+                    {{form.username(size=60)}}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }} :
+                    {{form.password(size=60)}}
+                </div>
+                <div class="form-group">
+                    {{ form.password_confirmation.label }} :
+                    {{form.password_confirmation(size=60)}}
+                </div>
+                {{form.submit(size=20, class_ = 'btn btn-outline-primary')}}
+            </form>
+            <p> Already have an account? <a href="{{url_for('auth.login')}}">Log in here</a></p>
+
 
         </div>
         <div class="col-md-3"></div>

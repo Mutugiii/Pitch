@@ -26,6 +26,7 @@ class DevConfig(Config):
     Configurations for when app is in development
     '''
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mutugi:Mutugi@localhost/pitch'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     DEBUG = True
 
 class TestConfig(Config):

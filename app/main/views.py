@@ -1,8 +1,9 @@
-from flask import render_template,redirect,abort,url_for,flash
+from flask import render_template,redirect,abort,url_for
 from . import main
 from ..auth.forms import UpdateProfileForm
-from .. import db,photos
+from .. import db
 from flask_login import login_required
+from ..models import User
 
 @main.route('/')
 def index():
@@ -19,20 +20,18 @@ def profile(uname):
     user = User.query.filter_by(username = uname).first()
 
     if user is None:
-        flash('User does not exist')
         abort(404)
 
     return render_template('profile/profile.html', user = user)
 
-@main.route('/user/<uname>/update', methods=['GET','POST'])
+@main.route('/user/<uname>/update', methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
     '''
     Function to update user profile
     '''
-    user = db.query.filter_by(username = uname).first()
+    user = User.query.filter_by(username = uname).first()
     if user is None:
-        flash('User does not exist')
         abort(404)
 
     form = UpdateProfileForm()
@@ -46,7 +45,7 @@ def update_profile(uname):
 
     return render_template('profile/update.html', form = form)
 
-@main.route('/user/<uname>/update/pic', methods=['POST'])
+@main.route('/user/<uname>/update/pic', methods = ['POST'])
 @login_required
 def update_picture(uname):
     '''
@@ -54,7 +53,6 @@ def update_picture(uname):
     '''
     user = User.query.filter_by(username = uname).first()
     if user is None:
-        flash('User does not exist')
         abort(404)
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])

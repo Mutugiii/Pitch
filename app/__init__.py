@@ -23,7 +23,7 @@ def create_app(config_name):
      login_manager.init_app(app)
      mail.init_app(app)
 
-     #Configure UploadSet
+     # Configure UploadSet
      configure_uploads(app,photos)
 
      # Registering Blueprints

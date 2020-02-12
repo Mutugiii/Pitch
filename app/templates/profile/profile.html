@@ -1,15 +1,6 @@
+{% extends 'base.html' %}
+
 {% block title %}
-MDBootstrap links
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
-MDBootstrap script tags
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
 <title>Profile</title>
 {% endblock %}
 
@@ -20,10 +11,10 @@ MDBootstrap script tags
         <div class="col-md-4">
             {% if user.profile_pic_path %}
             <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="rounded-circle z-depth-2"
-                data-holder-rendered="true">
+                data-holder-rendered="true" height="120px" width="120px">
             {% else %}
             <img src="https://previews.123rf.com/images/panyamail/panyamail1809/panyamail180900343/109879063-user-avatar-icon-sign-profile-symbol.jpg"
-                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true">
+                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true" height="120px" width="120px">
             {% endif %}
         </div>
         <div class="col-md-8">
