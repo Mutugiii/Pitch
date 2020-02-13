@@ -11,10 +11,10 @@
         <div class="col-md-4">
             {% if user.profile_pic_path %}
             <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="rounded-circle z-depth-2"
-                data-holder-rendered="true" height="120px" width="120px">
+                data-holder-rendered="true" height="150px" width="150px">
             {% else %}
             <img src="https://previews.123rf.com/images/panyamail/panyamail1809/panyamail180900343/109879063-user-avatar-icon-sign-profile-symbol.jpg"
-                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true" height="120px" width="120px">
+                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true" height="150px" width="150px">
             {% endif %}
         </div>
         <div class="col-md-8">
@@ -30,19 +30,27 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
     <div class="row">
         {% if user == current_user %}
-        <a href="{{url_for('main.update_profile', uname = user.username)}}">Edit Profile</a>
-
-        <form action="{{url_for('main.update_picture',uname = user.username)}}" method="post"
-            enctype="multipart/form-data" class="container row">
-            <div class="btn btn-outline-primary btn-rounded waves-effect" class="col-md-4">
-                <span>Choose files<i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i></span>
-                <input type="file" name="photo" required>
+        <div class="container">
+            <div class="row">
+                <a href="{{url_for('main.update_profile', uname = user.username)}}">Edit User Profile</a>
             </div>
-            <div class="file-path-wrapper col-md-4">
-                <input class="file-path validate" type="text" placeholder="Upload profile picture">
+            <br><br>
+            <div class="row">
+                <form action="{{url_for('main.update_picture',uname = user.username)}}" method="post"
+                    enctype="multipart/form-data" class="container row">
+                    <div class="btn btn-outline-primary btn-rounded waves-effect" class="col-md-4">
+                        <span>Choose files<i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i></span>
+                        <input type="file" name="photo" class='btn btn-primary' required>
+                    </div>
+                    <div class="file-path-wrapper col-md-4">
+                        <!-- <input class="file-path validate" type="text" placeholder="Upload profile picture"> -->
+                        <span style="text-decoration: underline; font-size: 1.4rem;">Upload profile Picture</span>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-outline-primary">
+                </form>
             </div>
-            <input type="submit" class="col-md-4">
-        </form>
+        </div>
         {% endif %}
     </div>
 </div>

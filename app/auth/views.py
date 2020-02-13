@@ -47,7 +47,7 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         username = current_user.username
     logout_user()
     return render_template('logout.html', username = username)    

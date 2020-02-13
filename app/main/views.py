@@ -1,9 +1,10 @@
-from flask import render_template,redirect,abort,url_for
+from flask import render_template,redirect,abort,url_for,request
 from . import main
 from ..auth.forms import UpdateProfileForm
-from .. import db
+from .. import db, photos
 from flask_login import login_required
-from ..models import User
+from ..models import User,Pitch,Comment
+from .forms import PitchForm
 
 @main.route('/')
 def index():
@@ -24,7 +25,7 @@ def profile(uname):
 
     return render_template('profile/profile.html', user = user)
 
-@main.route('/user/<uname>/update', methods = ['GET','POST'])
+@main.route('/user/<uname>/update', methods = ('GET','POST'))
 @login_required
 def update_profile(uname):
     '''
@@ -43,7 +44,7 @@ def update_profile(uname):
 
         return redirect(url_for('.profile', uname=user.username))
 
-    return render_template('profile/update.html', form = form)
+    return render_template('profile/update.html', form = form, user = user)
 
 @main.route('/user/<uname>/update/pic', methods = ['POST'])
 @login_required
@@ -56,8 +57,24 @@ def update_picture(uname):
         abort(404)
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
-        path = f'photos/filename'
+        path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname = uname))
     
+
+@main.route('/new/pitch')
+def new_pitch():
+    '''
+    Function to create and save pitches in database
+    '''
+    form = PitchForm()
+    if form.validate_on_submit():
+        pitch = Pitch(title = form.title.data, content = form.content.data, category = form.category.data)
+        db.session.add(pitch)
+        db.session.commit()
+
+        return(redirect(url_for('.index')))
+
+    return render_template('pitch/new_pitch.html')
+

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
 <title>Login</title>
@@ -19,7 +20,8 @@
                     {{ message }}
                 </div>
                 {% endfor %}
-                <form method="POST" action="{{url_for('main.index')}}">
+                {{wtf.quick_form(form)}}
+                <!-- <form action="{{url_for('main.index')}}" method="POST">
                     {{ form.csrf_token }}
                     <div class="form-group">
                         {{ form.email.label }} :
@@ -34,7 +36,7 @@
                         {{form.remember(size=20, class_ = 'form-check-input')}}
                     </div>
                     {{form.submit(size=20, class_ = 'btn btn-outline-primary')}}
-                </form>
+                </form> -->
                 <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
             </div>
         </div>

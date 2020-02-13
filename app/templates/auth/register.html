@@ -1,8 +1,9 @@
 {% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-<!-- {% block title %}
+{% block title %}
 <title>Register</title>
-{% endblock %} -->
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -10,7 +11,8 @@
         <div class="col-md-3"> </div>
         <div class="col-md-6">
             <br>
-            <form method="POST" action="{{url_for('auth.login')}}">
+            {{wtf.quick_form(form)}}
+            <!-- <form action="{{url_for('auth.login')}}" method="POST">
                 {{ form.csrf_token }}
                 <div class="form-group">
                     {{ form.email.label }} :
@@ -29,7 +31,13 @@
                     {{form.password_confirmation(size=60)}}
                 </div>
                 {{form.submit(size=20, class_ = 'btn btn-outline-primary')}}
-            </form>
+            </form> -->
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
             <p> Already have an account? <a href="{{url_for('auth.login')}}">Log in here</a></p>
 
 

@@ -6,15 +6,12 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          Bye  {{username}}!!!
-          <div class="container">
-            <a href="{{url_for('main.index')}}" class="btn">Take me to home page</a>
-          </div>
-        </div>
-        <div class="col-md-3"></div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="font-size: 5rem;">
+      Bye {{username}}!!!
     </div>
+    <div class="col-md-3"></div>
+  </div>
 </div>
 {% endblock %}

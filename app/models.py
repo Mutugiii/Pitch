@@ -1,6 +1,7 @@
 from . import db,login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -20,7 +21,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), unique = True, index=True)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     pass_secure = db.Column(db.String())
 
     @property
@@ -53,9 +54,24 @@ class Pitch(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255))
     content = db.Column(db.String())
-    upvote = db.Column(db.Integer)
-    downvote = db.Column(db.Integer)
-    users = db.relationship('User', backref='pitch', lazy='dynamic')
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
     def __repr__(self):
-        return f'User {self.name}'
+        return f'Pitch {self.title}'
+
+class Comment(db.Model):
+    '''
+    Model table to store, access and manipulate comments
+    '''
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    content = db.Column(db.String())
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+
+    def __repr__(self):
+       return f'Comment {self.content}'
