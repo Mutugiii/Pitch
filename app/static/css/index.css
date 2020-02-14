@@ -1,0 +1,15 @@
+.btnchange #submit {
+    size: 2rem;
+    color:#007bff;
+    border-color:#007bff
+}
+.btnchange #submit:hover{
+    color:#fff;
+    background-color:#007bff;
+    border-color:#007bff
+}
+.btnchange #submit.focus,
+.btnchange #submit:focus{
+    box-shadow:0 0 0 .2rem rgba(0,123,255,.5)
+}
+

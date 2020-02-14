@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
 
 {% block title %}
 <title>Pitch</title>
 {% endblock %}
 
 {% block content %}
-<p>
-    Hello World
-</p>
+<!-- <img src="https://images.pexels.com/photos/316465/pexels-photo-316465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" height="800px"> -->
+<div class="container">
+    <h4>All Pitches</h4>
+    <hr>
+    <p>Post a pitch <a href="{{url_for('main.new_pitch')}}">Here</a> </p>
+    {{macro.displayPitches(pitches)}}
+</div>
 {% endblock %}

@@ -2,6 +2,7 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
+{{super()}}
 <title>Login</title>
 {% endblock %}
 
@@ -20,23 +21,7 @@
                     {{ message }}
                 </div>
                 {% endfor %}
-                {{wtf.quick_form(form)}}
-                <!-- <form action="{{url_for('main.index')}}" method="POST">
-                    {{ form.csrf_token }}
-                    <div class="form-group">
-                        {{ form.email.label }} :
-                        {{form.email(size=60)}}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label }} :
-                        {{form.password(size=60)}}
-                    </div>
-                    <div class="form-group">
-                        {{ form.remember.label }} <span style="margin-right: 30px;"></span>
-                        {{form.remember(size=20, class_ = 'form-check-input')}}
-                    </div>
-                    {{form.submit(size=20, class_ = 'btn btn-outline-primary')}}
-                </form> -->
+                {{wtf.quick_form(form, extra_classes = 'btnchange')}}
                 <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
             </div>
         </div>

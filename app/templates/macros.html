@@ -1,0 +1,10 @@
+{% macro displayPitches(pitches) %}
+{% for pitch in pitches %}
+<div class="container">
+    <hr>
+    {{pitch.title}} - {{pitch.category}}
+    {{pitch.content}}
+    <hr>
+</div>
+{% endfor %}
+{% endmacro %}

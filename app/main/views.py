@@ -11,7 +11,8 @@ def index():
     '''
     Function to view the route page
     '''
-    return render_template('index.html')
+    pitches = Pitch.query.all() 
+    return render_template('index.html', pitches = pitches)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -23,9 +24,10 @@ def profile(uname):
     if user is None:
         abort(404)
 
+    pitches = Pitch.query.filter_by(user_id=user.id).all()
     return render_template('profile/profile.html', user = user)
 
-@main.route('/user/<uname>/update', methods = ('GET','POST'))
+@main.route('/user/<uname>/update', methods = ['GET', 'POST'])
 @login_required
 def update_profile(uname):
     '''
@@ -63,7 +65,8 @@ def update_picture(uname):
     return redirect(url_for('main.profile',uname = uname))
     
 
-@main.route('/new/pitch')
+@main.route('/new/pitch', methods = ['GET','POST'])
+@login_required
 def new_pitch():
     '''
     Function to create and save pitches in database
@@ -76,5 +79,6 @@ def new_pitch():
 
         return(redirect(url_for('.index')))
 
-    return render_template('pitch/new_pitch.html')
+    return render_template('pitch/new_pitch.html', form = form)
+
 
