@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
     <br>
-    <div class="container" style="font-size: 1.4rem;"> 
+    <div class="container" style="font-size: 1.4rem;">
         <div class="container row">
             <div class="col-md-4">
                 {% if pitch.category == 'promotion' %}
@@ -31,12 +31,14 @@
                 <small style="font-family: 'Oswald', sans-serif; color: grey;">{{pitch.category}}</small>
                 <p class="card-text" style="font-family: 'Lemonada', cursive; color: #a7a7a9;">{{pitch.content}}
                 </p>
+                <p class="card-text" style="font-family: 'Oswald', sans-serif; color: grey;">Posted by
+                    {{pitch.author.username}}</p>
             </div>
         </div>
     </div>
     <br>
 
-    
+
     {{macro.displayComments(comments)}}
     <br>
 </div>

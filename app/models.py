@@ -36,6 +36,19 @@ class User(UserMixin, db.Model):
 
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
+
+    def get_user(self):
+        '''
+        Function to get the user
+        '''
+        User.query.filter_by(username = self).first()
+
+    def save_user(self):
+        '''
+        Function to save a user
+        '''
+        db.session.add(self)
+        db.session.commit()
     
     def __repr__(self):
         return f'User {self.username}'
@@ -55,7 +68,7 @@ class Pitch(db.Model):
     content = db.Column(db.String())
     category = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.relationship('Comment', backref='comment', lazy='dynamic')
+    comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
 
     def save_pitch(self):
         """Save Function"""

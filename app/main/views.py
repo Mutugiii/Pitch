@@ -103,12 +103,13 @@ def comment(pitch_id):
     
     return render_template('pitch/comment.html', form = form, pitch = pitch)
 
-@main.route('/pitch/view/<pitch_id>')
+@main.route('/pitch/view/<pitch_id>', methods = ['GET', 'POST'])
 def view_pitch(pitch_id):
     '''
     Function to view pitches
     '''
     pitch = Pitch.query.filter_by(id = pitch_id).first()
     comments = Comment.query.filter_by(pitch_id = pitch_id).all()
+    
     return render_template('pitch/pitch.html', pitch = pitch, comments = comments)
 
