@@ -10,7 +10,7 @@ class TestPitchClass(unittest.TestCase):
         '''
         To set up before each test case
         '''
-        self.new_pitch = Pitch('My Pitch', 'I love this game', 'promotion')
+        self.new_pitch = Pitch(title = 'My Pitch',content =  'I love this game', category = 'promotion')
         
     def tearDown(self):
         '''
@@ -33,10 +33,3 @@ class TestPitchClass(unittest.TestCase):
         self.new_pitch.save_pitch()
         self.assertTrue(len(Pitch.query.all())>0)
 
-    def test_get_pitch_by_title(self):
-        '''
-        Test if pitch can be got by id
-        '''
-        self.new_pitch.save_pitch()
-        got_pitch = Pitch.get_pitch('My Pitch')
-        self.assertTrue(len(got_pitch) == 1)

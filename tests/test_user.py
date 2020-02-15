@@ -35,14 +35,6 @@ class TestUserModel(unittest.TestCase):
         self.new_user.save_user()
         self.assertTrue(len(User.query.all())>0)
 
-    def test_get_user_by_username(self):
-        '''
-        Test if user can be got by id
-        '''
-        self.new_user.save_user()
-        got_user = User.get_user('kamau')
-        self.assertTrue(len(got_user) == 1)
-
 
     def test_password_setter(self):
         '''

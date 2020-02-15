@@ -32,10 +32,3 @@ class TestCommentModel(unittest.TestCase):
         self.new_comment.save_comment()
         self.assertTrue(len(Comment.query.all())>0)
 
-    def test_get_comment_by_content(self):
-        '''
-        Test if comment can be got by content
-        '''
-        self.new_comment.save_comment()
-        got_comment = comment.get_comment('I love this pitch')
-        self.assertTrue(len(got_comment) == 1)

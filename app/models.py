@@ -37,12 +37,6 @@ class User(UserMixin, db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
 
-    def get_user(self):
-        '''
-        Function to get the user
-        '''
-        User.query.filter_by(username = self).first()
-
     def save_user(self):
         '''
         Function to save a user
