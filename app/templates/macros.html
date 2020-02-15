@@ -23,6 +23,16 @@
                     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
                     <small style="font-family: 'Oswald', sans-serif; color: grey;">{{pitch.category}}</small>
                     <p class="card-text" style="font-family: 'Lemonada', cursive; color: #a7a7a9;">{{pitch.content}}</p>
+                    <div class="container row">
+                        <div class="col-md-8">
+                            <small class="card-text"> <a href="{{url_for('main.view_pitch', pitch_id = pitch.id)}}">
+                                    View comments</a></small>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="card-text"> <a href="{{url_for('main.comment', pitch_id = pitch.id)}}">Add a
+                                    comment</a></small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,11 +69,44 @@
                     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
                     <small style="font-family: 'Oswald', sans-serif; color: grey;">{{pitch.category}}</small>
                     <p class="card-text" style="font-family: 'Lemonada', cursive; color: #a7a7a9;">{{pitch.content}}</p>
+                    <div class="container row">
+                        <div class="col-md-8">
+                            <small class="card-text"> <a href="{{url_for('main.view_pitch', pitch_id = pitch.id)}}">
+                                    View comments</a></small>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="card-text"> <a href="{{url_for('main.comment', pitch_id = pitch.id)}}">Add a
+                                    comment</a></small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <br>
+{% endfor %}
+{% endmacro %}
+
+
+
+{% macro displayComments(comments) %}
+{% for comment in comments %}
+<div class="container" style="font-size: 1.3rem">
+    <div class="container">
+        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+        <h4 style="text-align: center; text-decoration: underline;">Comment</h4>
+        <h5 class="card-title" style="font-family: 'Lemonada', cursive;color: #a7a7a9;">{{comment.content}}</h5>
+        <div class="row">
+            <div class="col-md-8">
+                <small style="font-family: 'Oswald', sans-serif; color: grey;">{{comment.comment.category}}</small>
+            </div>
+            <div class="col-md-4">
+                <p class="card-text" style="font-family: 'Lemonada', cursive; color: grey;">By {{comment.comment.author.username}}
+            </div>
+        </div>
+        </p>
+    </div>
+</div>
 {% endfor %}
 {% endmacro %}

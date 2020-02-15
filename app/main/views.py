@@ -2,9 +2,9 @@ from flask import render_template,redirect,abort,url_for,request
 from . import main
 from ..auth.forms import UpdateProfileForm
 from .. import db, photos
-from flask_login import login_required
+from flask_login import login_required, current_user
 from ..models import User,Pitch,Comment
-from .forms import PitchForm
+from .forms import PitchForm, CommentForm
 import markdown2
 
 @main.route('/')
@@ -72,9 +72,8 @@ def new_pitch():
     '''
     form = PitchForm()
     if form.validate_on_submit():
-        pitch = Pitch(title = form.title.data, content = form.content.data, category = form.category.data)
-        db.session.add(pitch)
-        db.session.commit()
+        pitch = Pitch(title = form.title.data, content = form.content.data, category = form.category.data, user_id = current_user.id)
+        pitch.save_pitch()
 
         return(redirect(url_for('.index')))
 
@@ -87,4 +86,29 @@ def pitch_category(category):
     Function to get and return template to view numerous categories
     '''
     pitches = Pitch.query.filter_by(category = category).all()
-    return render_template('pitch_categories.html', pitches = pitches)
+    return render_template('pitch/pitch_categories.html', pitches = pitches)
+
+@main.route('/pitch/comment/new/<pitch_id>', methods = ['GET', 'POST'])
+@login_required
+def comment(pitch_id):
+    '''
+    Function to Implement comment on a pitch
+    '''
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(content = form.content.data, user_id = current_user.id, pitch_id = pitch_id)
+        comment.save_comment()
+
+        return(redirect(url_for('.view_pitch', pitch_id = pitch_id)))
+    
+    return render_template('pitch/comment.html', form = form, pitch = pitch)
+
+@main.route('/pitch/view/<pitch_id>')
+def view_pitch(pitch_id):
+    '''
+    Function to view pitches
+    '''
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    comments = Comment.query.filter_by(pitch_id = pitch_id).all()
+    return render_template('pitch/pitch.html', pitch = pitch, comments = comments)
