@@ -5,12 +5,6 @@
 <title>Profile</title>
 {% endblock %}
 
-{% block styles %}
-<!--Importing the simple mde css and js files  -->
-{{ simplemde.css}}
-{{ simplemde.js }}
-{% endblock %}
-
 {% block content %}
 <div class="container-fluid">
     <br>
@@ -22,7 +16,7 @@
                 data-holder-rendered="true" height="150px" width="150px">
             {% else %}
             <img src="https://previews.123rf.com/images/panyamail/panyamail1809/panyamail180900343/109879063-user-avatar-icon-sign-profile-symbol.jpg"
-                alt="" class="rounded-circle z-depth-2" data-holder-rendered="true" height="150px" width="150px">
+                class="rounded-circle z-depth-2" data-holder-rendered="true" height="150px" width="150px">
             {% endif %}
         </div>
         <div class="col-md-8">

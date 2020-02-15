@@ -5,7 +5,6 @@ from .. import db, photos
 from flask_login import login_required, current_user
 from ..models import User,Pitch,Comment
 from .forms import PitchForm, CommentForm
-import markdown2
 
 @main.route('/')
 def index():
@@ -112,3 +111,4 @@ def view_pitch(pitch_id):
     pitch = Pitch.query.filter_by(id = pitch_id).first()
     comments = Comment.query.filter_by(pitch_id = pitch_id).all()
     return render_template('pitch/pitch.html', pitch = pitch, comments = comments)
+

@@ -6,12 +6,6 @@
 <title>Update Profile</title>
 {% endblock %}
 
-{% block styles %}
-<!--Importing the simple mde css and js files  -->
-{{ simplemde.css}}
-{{ simplemde.js }}
-{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -20,7 +14,6 @@
             <br>
             <div class="container-fluid">
                 {{wtf.quick_form(form, extra_classes = 'btnchange')}}
-                {{simplemde.load}}
             </div>
         </div>
         <div class="col-md-3"></div>
