@@ -5,14 +5,14 @@ from .. import db, photos
 from flask_login import login_required
 from ..models import User,Pitch,Comment
 from .forms import PitchForm
+import markdown2
 
 @main.route('/')
 def index():
     '''
     Function to view the route page
     '''
-    pitches = Pitch.query.all() 
-    return render_template('index.html', pitches = pitches)
+    return render_template('index.html')
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -20,11 +20,11 @@ def profile(uname):
     Function to route to the profile page
     '''
     user = User.query.filter_by(username = uname).first()
+    pitches = Pitch.query.filter_by(author = user).all()
 
     if user is None:
         abort(404)
-
-    return render_template('profile/profile.html', user = user)
+    return render_template('profile/profile.html', user = user, pitches = pitches)
 
 @main.route('/user/<uname>/update', methods = ['GET', 'POST'])
 @login_required

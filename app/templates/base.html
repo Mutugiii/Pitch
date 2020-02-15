@@ -19,15 +19,17 @@
 </head>
 
 <body>
+    {% block styles %}
+
+    {% endblock %}
+
     {% block navbar %}
     {% include 'navbar.html' %}
     {% endblock %}
     {% block content %}
 
     {% endblock %}
-    {% block footer %}
-    {% include 'footer.html' %}
-    {% endblock %}
+    
 
     <!-- Script tags -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

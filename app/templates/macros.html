@@ -35,15 +35,6 @@
 
 {% macro displayCategoryPitches(pitches) %}
 {% for pitch in pitches %}
-{% if pitch.category == 'promotion' %}
-    <h3 class="text-center">Promotion Pitches</h3>
-{% endif %}
-{% if pitch.category == 'project' %}
-    <h3 class="text-center">Project Pitches</h3>
-{% endif %}
-{% if pitch.category == 'Pick up Lines' %}
-    <h3 class="text-center">Pick up Lines</h3>
-{% endif %}
 <br>
 <div class="container" style="font-size: 1.4rem;">
     <div class="card w-100">
