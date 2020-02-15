@@ -19,10 +19,9 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        flash('Thank you for signing up!')
         mail_message('Welcome to Pitch','email/welcome',user.email,user=user)
-
         return redirect(url_for('auth.login'))
+        flash('Thank you for signing up!')
 
     return render_template('auth/register.html', form = reg_form)
 
