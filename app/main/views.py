@@ -24,7 +24,6 @@ def profile(uname):
     if user is None:
         abort(404)
 
-    pitches = Pitch.query.filter_by(user_id=user.id).all()
     return render_template('profile/profile.html', user = user)
 
 @main.route('/user/<uname>/update', methods = ['GET', 'POST'])
@@ -82,3 +81,10 @@ def new_pitch():
     return render_template('pitch/new_pitch.html', form = form)
 
 
+@main.route('/pitch/<category>')
+def pitch_category(category):
+    '''
+    Function to get and return template to view numerous categories
+    '''
+    pitches = Pitch.query.filter_by(category = category).all()
+    return render_template('pitch_categories.html', pitches = pitches)

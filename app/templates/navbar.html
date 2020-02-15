@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark " style="background-color: #b0c0bc;">
+<nav class="navbar navbar-dark" style="background-color: #b0c0bc;">
   <a class="navbar-brand" href="/" style="font-size: 1.4rem; color: #797270;">Pitch</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
     aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,17 +19,13 @@
       <li class="nav-item"><a class="nav-link" href="{{url_for('auth.login')}}" style="color: #797270;">Sign In</a
           class="nav-link"></li>
       {% endif %}
-
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Link</a>
-      </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" style="color: #797270;">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Categories</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01" style="color: #797270;">
+          <a class="dropdown-item" href="/pitch/promotion">Promotion Pitches</a>
+          <a class="dropdown-item" href="/pitch/project">Project Pitches</a>
+          <a class="dropdown-item" href="/pitch/pickup">Pick up Lines</a>
         </div>
       </li>
     </ul>

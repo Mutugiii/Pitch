@@ -10,8 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<img src="https://dummyimage.com/1500x300/fafafa/181b47.png&text=PITCH+IT"
-    alt="https://dummyimage.com/1500x300/fafafa/21266b.png&text=Pitch+It">
+<img src="https://dummyimage.com/1350x300/fafafa/181b47.png&text=PITCH+IT">
 <div class="container">
     <div class="row intro-text">
         <div class="col-md-3"></div>
@@ -20,7 +19,6 @@
                 pitches by users
             </p>
             <p class="text-center">
-                Pitch in by submitting your pitches
                 <a href="{{url_for('main.new_pitch')}}">
                     <input type="submit" class="btn btn-outline-primary" value="Submit a Pitch">
                 </a>
@@ -37,22 +35,31 @@
                 <br>
                 <div class="cardcontainer">
                     <div class="carded">
-                        <h3 class="title">Promotion Pitches</h3>
-                        <div class="bar">
-                            <div class="emptybar"></div>
-                        </div>
+                        <a href="{{url_for('main.pitch_category', category = 'promotion')}}">
+                            <h3 class="title">Promotion Pitches</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <p>Click to view</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="carded">
-                        <h3 class="title">Project Pitches</h3>
-                        <div class="bar">
-                            <div class="emptybar"></div>
-                        </div>
+                        <a href="{{url_for('main.pitch_category', category = 'project')}}">
+                            <h3 class="title">Project Pitches</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <p>Click to view</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="carded">
-                        <h3 class="title">Pick up Lines</h3>
-                        <div class="bar">
-                            <div class="emptybar"></div>
-                        </div>
+                        <a href="{{url_for('main.pitch_category', category = 'pickup')}}">
+                            <h3 class="title">Pick up Lines</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <p>Click to view</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
